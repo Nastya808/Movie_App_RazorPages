@@ -1,0 +1,54 @@
+﻿@page
+@model MovieApp.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <p>
+        <a asp-page="./Create" class="btn btn-primary">Add New Movie</a>
+    </p>
+    <div class="movies">
+        @foreach (var item in Model.Movies)
+        {
+            <div class="movie">
+                <img src="@item.Poster" alt="@item.Title" class="poster" />
+                <h2>@item.Title</h2>
+                <h3>@item.Director</h3>
+                <p><strong>Genre:</strong> @item.Genre</p>
+                <p><strong>Year:</strong> @item.Year</p>
+                <p>@item.Description</p>
+                <p>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .movies {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px;
+        width: 200px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .poster {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+</style>

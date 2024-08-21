@@ -1,0 +1,70 @@
+﻿@page
+@model MovieApp.Pages.Movies.DetailsModel
+
+@{
+    ViewData["Title"] = "Movie Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";}
+
+<h1>Movie Details</h1>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Director)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Director)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Year)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Year)
+        </dd>
+        <dt class="col-sm-2">
+            Poster
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Movie.Poster))
+            {
+                <img src="@Model.Movie.Poster" alt="@Model.Movie.Title" class="poster" />
+            }
+            else
+            {
+                <p>No poster available</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Description)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-page="/Movies/Edit" asp-route-id="@Model.Movie.Id" class="btn btn-secondary">Edit</a>
+    <a asp-page="/Movies/Index" class="btn btn-info">Back to List</a>
+</div>
+
+<style>
+    .poster {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+</style>
